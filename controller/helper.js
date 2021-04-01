@@ -41,7 +41,7 @@ const checkAuth = async (page) => {
 		return !!document.querySelector(".login_form_head"); // !! converts anything to boolean
 	});
 	if (checkAuth) {
-		await page.type("[name='phone_number']", number);
+		await page.type("[name='phone_number']", `${number}`);
 		await page.click('[msgid="modal_next"]');
 		await page.click('[rb-localize="modal_ok"]');
 
@@ -58,18 +58,13 @@ const saveLocalStorage = async (page) => {
 		return json;
 	});
 	console.log(json);
-	fs.writeFileSync(
-		`${__dirname}/controller/local.json`,
-		JSON.stringify(json)
-	);
+	fs.writeFileSync(`./controller/local.json`, JSON.stringify(json));
 };
 
 const restoreLocalStorage = async (page) => {
 	console.log("Check Your Authenticate ...");
-	let json = JSON.parse(
-		fs.readFileSync(`${__dirname}/controller/local.json`)
-	);
-	if (json) return;
+	let json = JSON.parse(fs.readFileSync(`./controller/local.json`));
+	if (!json) return;
 	await page.evaluate((json) => {
 		localStorage.clear();
 		localStorage.setItem("auth", json["auth"]);

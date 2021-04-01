@@ -1,5 +1,4 @@
 const puppeteer = require("puppeteer");
-const fs = require("fs");
 const {
 	restoreLocalStorage,
 	checkAuth,
@@ -17,13 +16,16 @@ const {
 
 		await checkAuth(page);
 
-
-		while (new Date().getHours() < 13 && new Date().getHours() === 23 && new Date().getHours() === 0) {
+		while (
+			new Date().getHours() < 13 ||
+			new Date().getHours() === 23 ||
+			new Date().getHours() === 0
+		) {
 			await findPeresnceBox(page);
 
 			await delay(5 * 60 * 1000); //TODO WORK
 		}
-		console.log('End :)');
+		console.log("End :)");
 		page.close();
 	} catch (err) {
 		handleError(err);

@@ -4,16 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
     "fs": "0.0.1-security",
-    "puppeteer": "^8.0.0",
-    "selenium-webdriver": "4.0.0-beta.2"
+    "puppeteer": "^8.0.0"
   },
   "devDependencies": {}
 }
